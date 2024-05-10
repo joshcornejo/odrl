@@ -12,19 +12,13 @@
 	<script src="http://www.w3.org/2013/ShEx/demobits/jquery.min.js" type= "text/javascript"></script>
 		
 	</head>
-	<body>
+	<body style="background:white;">
 		<section  id="abstract">
-			<p>This document discusses the importance of providing a formal semantics for ODRL.
-			</p>
-			 
+			<p>This document discusses the importance of providing a formal semantics for ODRL.</p>			 
 		</section>
 		<section id='sotd'>
-
 		</section> 
 	
-
-
-
 		<section id="intro">
 		<h2>Introduction</h2> 	
 		<p> <!-- definition of ODRL -->
@@ -101,8 +95,24 @@
 		</ul>
 -->
 		</section>			
-		
-			
+
+		<section id="section2">	
+			<h2>Semantics of Policies</h2>	
+			The following is a recommended way to interpret the semantic context for each of the different subclasses of Policies throughout a rights management lifecycle:<br>
+			<li><code>odrl:Set</code> - can be considered a collection, catalogue or set of related rules that makes sense to an author. This subclass lives within the private semantic space of the <code>odrl:Assigner</code>. <code>odrl:Set</code> is not necessarily linked to <code>odrl:Offer</code> nor <code>odrl:Agreement</code>.<br></li>
+			<li><code>odrl:Offer</code> - is a cohesive bid or tender created by an <code>odrl:Assigner</code> when is preparing a proposition to allow potential <code>odrl:Assignee</code> to have access to the rights of a policy or policies.<br></li>
+			<li><code>odrl:Agreement</code> - is the accord between (<i>at least</i>) one <code>odrl:Assigner</code> and a <code>odrl:Assignee</code>. <b>(Not sure if others concur, but in practice it makes sense to me)</b> An instance of <code>odrl:Agreement</code>should have a way for the <code>odrl:Assigner</code> to trace to it's related <code>odrl:Offer</code>.</li>
+			<h3>State of the world</h3>
+			In order to validate a policy, we need to have a formal description of the state of the world as part of the input. The states of the world could be:
+			<li><b>Synthetic state of the world</b>: this allows for the validation of a <code>odrl:Offer</code> in hypothetical scenarios. There are <i>n</i> possible instances of states of the world.</li>
+			<li><b>Real state of the world</b>: this is the real world and is needed as part of the input for <code>odrl:Agreement</code>. This instance exists only during the period of validation.</li>
+			<br>
+			A state of the world could include some of the following attributes:
+			<li><b>Ranges</b>>: start and/or end to allow for the validation.</li>
+			<li><b>Executed actions</b>: these are the actions that could be input to different validations (through those ranges above)</li>
+			<li><b>Parties</b>: parties that have a <code>odrl:function</code> within the policies tested</li>
+			<br>These inputs are used to test elements of the rules within the policy, like <code>odrl:failure</code>, <code>odrl:consequence</code> and/or <code>odrl:remedy</code>.
+			</section>
 <section id="section2">	
 <h2> Semantics of Permission, Prohibition, and Obligation</h2>	
 	
