@@ -96,24 +96,43 @@
 -->
 		</section>			
 
-		<section id="section2">	
+		< id="section2">	
 			<h2>Semantics of Policies</h2>	
-			The following is a recommended way to interpret the semantic context for each of the different subclasses of Policies throughout a rights management lifecycle:<br>
-			<li><code>odrl:Set</code> - can be considered a collection, catalogue or set of related rules that makes sense to an author. This subclass lives within the private semantic space of the <code>odrl:Assigner</code>. <code>odrl:Set</code> is not necessarily linked to <code>odrl:Offer</code> nor <code>odrl:Agreement</code>.<br></li>
-			<li><code>odrl:Offer</code> - is a cohesive bid or tender created by an <code>odrl:Assigner</code> when is preparing a proposition to allow potential <code>odrl:Assignee</code> to have access to the rights of a policy or policies.<br></li>
-			<li><code>odrl:Agreement</code> - is the accord between (<i>at least</i>) one <code>odrl:Assigner</code> and a <code>odrl:Assignee</code>. <b>(Not sure if others concur, but in practice it makes sense to me)</b> An instance of <code>odrl:Agreement</code>should have a way for the <code>odrl:Assigner</code> to trace to it's related <code>odrl:Offer</code>.</li>
-			<h3>State of the world</h3>
-			In order to validate a policy, we need to have a formal description of the state of the world as part of the input. The states of the world could be:
-			<li><b>Synthetic state of the world</b>: this allows for the validation of a <code>odrl:Offer</code> in hypothetical scenarios. There are <i>n</i> possible instances of states of the world.</li>
-			<li><b>Real state of the world</b>: this is the real world and is needed as part of the input for <code>odrl:Agreement</code>. This instance exists only during the period of validation.</li>
-			<br>
-			A state of the world could include some of the following attributes:
-			<li><b>Ranges</b>>: start and/or end to allow for the validation.</li>
-			<li><b>Executed actions</b>: these are the actions that could be input to different validations (through those ranges above)</li>
-			<li><b>Parties</b>: parties that have a <code>odrl:function</code> within the policies tested</li>
-			<br>These inputs are used to test elements of the rules within the policy, like <code>odrl:failure</code>, <code>odrl:consequence</code> and/or <code>odrl:remedy</code>.
-			</section>
-<section id="section2">	
+				The following is a guideline for the interpretation of the appropriate semantic context for the different subclasses of Policies throughout a rights management lifecycle:<br>
+				<ul>
+				<li><code>odrl:Set</code> - a collection, catalogue or set of related rules that makes sense to an author. This subclass lives within the private space of the <code>odrl:Assigner</code>. <code>odrl:Set</code> is not necessarily linked to <code>odrl:Offer</code> nor <code>odrl:Agreement</code>.<br></li>
+				<li><code>odrl:Offer</code> - is a cohesive bid or tender created by an <code>odrl:Assigner</code> when is preparing a proposition to allow potential <code>odrl:Assignee</code> to have access to the rights of a policy or policies.<br></li>
+				<li><code>odrl:Agreement</code> - is the accord between (<i>at least</i>) one <code>odrl:Assigner</code> and a <code>odrl:Assignee</code>. An instance of <code>odrl:Agreement</code> should have a link for the <code>odrl:Assigner</code> to trace to it's related <code>odrl:Offer</code>.</li>
+				</ul>
+			<h3>Deontic World</h3>
+				To validate a policy, we need to have a formal description of the relevant state of the world as part of the input and that generates a new output. These could be:
+				<ul>
+				<li><b>Synthetic</b>: allows for the validation of a <code>odrl:Offer</code> in possible hypothetical scenarios. There are <i>n</i> possible instances of states of the world.</li>
+				<li><b>Real</b>: the actual world where the policies have real effect. Critical input for the validation of any <code>odrl:Agreement</code>.</li>
+				</ul>
+				<br>
+				A world can have two types of attributes:
+				<ul>
+				<li><b>Extrinsic</b>: of independence existence and extraneous and part of the open world where the policies are validated, but required as inputs.</li>
+				<li><b>Intrinsic</b>: created by the Policy(or Policies) and whose values are controlled throughout the validation events.</li>
+				</ul>
+				In the case of a synthetic world, the extrinsic and intrinsic attributes are initialized based on hypothetical scenarios relevant to the tester. In the case of a real world, the extrinsic attributes are retrieved from the real world, the intrinsic attributes are initialized based on the actual state of affairs.<br>
+				Attributes can be:
+				<ul>
+				<li><b>Units</b>: unitary values.</li>
+				<li><b>Tuples</b>: arrays, lists or collections of values.</li>
+				</ul>
+				Some examples:
+				<ul>
+				<li><b>Current Time</b>: a unit of time that represents the current time of the state of the world.</li>
+				<li><b>Time Range</b>: a tuple of time values that represent a start and an end.</li>
+				<li><b>List of Languages</b>: a sequence of languages from a taxonomy (e.g. <a href="https://www.iso.org/iso-639-language-code#">iso639</a>).</li>
+				<li><b>Executed actions</b>: a collection of executed actions.</li>
+				<li><b>Parties</b>: parties involved in a given state that have a <code>odrl:function</code> within the policies.</li>
+				</ul>
+		</section>
+
+		<section id="section2">	
 <h2> Semantics of Permission, Prohibition, and Obligation</h2>	
 	
 	The deontic modalities of <b>Permissions</b>, <b>Prohibitions</b> and <b>Obligations</b> can be represented in ODRL as instances of the classes 
